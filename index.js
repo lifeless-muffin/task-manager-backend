@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const {generateMongooseURI} = require('./app/services/database/config.service');
 const indexRoute = require('./app/routes/index');
 const usersRoute = require('./app/routes/users');
+require('./app/services/passport/passport.service')
 
 // app configurations 
 const PORT = process.env.PORT;
@@ -47,4 +48,4 @@ app.use('/users', usersRoute);
 // connect to database, and start listening to app
 mongoose.connect(mongooseURI, {useNewUrlParser: true, useUnifiedTopology: true})
   .then((err, db) => {app.listen(PORT, () => console.log(`Listening to port ${PORT}`))})
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err));  
